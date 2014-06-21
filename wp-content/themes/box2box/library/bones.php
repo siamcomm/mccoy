@@ -1,33 +1,5 @@
 <?php
-/* Welcome to Bones :)
-This is the core Bones file where most of the
-main functions & features reside. If you have
-any custom functions, it's best to put them
-in the functions.php file.
-
-Developed by: Eddie Machado
-URL: http://themble.com/bones/
-
-  - head cleanup (remove rsd, uri links, junk css, ect)
-  - enqueueing scripts & styles
-  - theme support functions
-  - custom menu output & fallbacks
-  - related post function
-  - page-navi function
-  - removing <p> from around images
-  - customizing the post excerpt
-  - custom google+ integration
-  - adding custom fields to user profiles
-
-*/
-
-/*********************
-WP_HEAD GOODNESS
-The default wordpress head is
-a mess. Let's clean it up by
-removing all the junk we don't
-need.
-*********************/
+/* McCoy Core file */
 
 function bones_head_cleanup() {
 	// category feeds
@@ -52,6 +24,7 @@ function bones_head_cleanup() {
 	add_filter( 'style_loader_src', 'bones_remove_wp_ver_css_js', 9999 );
 	// remove Wp version from scripts
 	add_filter( 'script_loader_src', 'bones_remove_wp_ver_css_js', 9999 );
+	add_filter( 'get_search_form', 'bones_wpsearch' );
 
 } /* end bones head cleanup */
 
@@ -124,12 +97,16 @@ SCRIPTS & ENQUEUEING
 // loading modernizr and jquery, and reply script
 function bones_scripts_and_styles() {
 
-  global $wp_styles; // call global $wp_styles variable to add conditional wrapper around ie stylesheet the WordPress way
+  	global $wp_styles; // call global $wp_styles variable to add conditional wrapper around ie stylesheet the WordPress way
 
-  if (!is_admin()) {
+  	if (!is_admin()) {
 
 		// modernizr (without media query polyfill)
 		wp_register_script( 'bones-modernizr', get_stylesheet_directory_uri() . '/library/js/libs/modernizr.custom.min.js', array(), '2.5.3', false );
+
+		// Bootstrap 3.1.1
+		wp_register_script( 'bootstrap', get_stylesheet_directory_uri() . '/library/js/bootstrap.js', array('jquery'), '3.1.1', false );
+		wp_register_style( 'bootstrap-stylesheet', get_stylesheet_directory_uri() . '/library/css/bootstrap.css', array(), '', 'all' );
 
 		// register main stylesheet
 		wp_register_style( 'bones-stylesheet', get_stylesheet_directory_uri() . '/library/css/style.css', array(), '', 'all' );
@@ -137,29 +114,25 @@ function bones_scripts_and_styles() {
 		// ie-only style sheet
 		wp_register_style( 'bones-ie-only', get_stylesheet_directory_uri() . '/library/css/ie.css', array(), '' );
 
-    // comment reply script for threaded comments
-    if ( is_singular() AND comments_open() AND (get_option('thread_comments') == 1)) {
-		  wp_enqueue_script( 'comment-reply' );
-    }
+    	// comment reply script for threaded comments
+    	if ( is_singular() AND comments_open() AND (get_option('thread_comments') == 1)) {
+			wp_enqueue_script( 'comment-reply' );
+    	}
 
 		//adding scripts file in the footer
 		wp_register_script( 'bones-js', get_stylesheet_directory_uri() . '/library/js/scripts.js', array( 'jquery' ), '', true );
 
 		// enqueue styles and scripts
 		wp_enqueue_script( 'bones-modernizr' );
+		wp_enqueue_script( 'bootstrap' );
+		wp_enqueue_style( 'bootstrap-stylesheet' );
 		wp_enqueue_style( 'bones-stylesheet' );
 		wp_enqueue_style( 'bones-ie-only' );
 
 		$wp_styles->add_data( 'bones-ie-only', 'conditional', 'lt IE 9' ); // add conditional wrapper around ie stylesheet
 
-		/*
-		I recommend using a plugin to call jQuery
-		using the google cdn. That way it stays cached
-		and your site will load faster.
-		*/
 		wp_enqueue_script( 'jquery' );
 		wp_enqueue_script( 'bones-js' );
-
 	}
 }
 
@@ -291,7 +264,4 @@ function bones_excerpt_more($more) {
 	// edit here if you like
 	return '...  <a class="excerpt-read-more" href="'. get_permalink($post->ID) . '" title="'. __( 'Read ', 'bonestheme' ) . get_the_title($post->ID).'">'. __( 'Read more &raquo;', 'bonestheme' ) .'</a>';
 }
-
-
-
 ?>

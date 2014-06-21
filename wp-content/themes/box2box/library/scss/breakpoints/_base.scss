@@ -17,11 +17,11 @@ GENERAL STYLES
 
 body {
 	font-family: $lato;
-	font-size: 100%;
+	/*font-size: 100%;*/
 	line-height: 1.5;
 	color: $text-color;
 	background-color: $gray;
-  -webkit-font-smoothing: antialiased;
+	-webkit-font-smoothing: antialiased;
 }
 
 /********************
@@ -153,6 +153,7 @@ HEADER STYLES
 
 .header {
 	background-color: $black;
+	overflow:hidden;
 }
 
 	#logo {
@@ -733,7 +734,7 @@ COMMENT STYLES
 
 	/* comment reply link */
 	.comment-reply-link {
-		@extend .blue-btn;
+		/*@extend .blue-btn;*/
 		font-size: 0.9em;
 		float: right;
 
@@ -758,7 +759,7 @@ COMMENT FORM STYLES
 ******************************************************************/
 
 .comment-respond {
-	@extend .cf;
+	/*@extend .cf;*/
 	padding: 1.5em;
 	border-top: 1px solid $light-gray;
 }
@@ -789,7 +790,7 @@ COMMENT FORM STYLES
 
 	/* comment submit button */
 	#submit {
-		@extend .blue-btn;
+		/*@extend .blue-btn;*/
 		float: right;
 		font-size: 1em;
 	}
@@ -863,6 +864,7 @@ FOOTER STYLES
 	clear: both;
 	background-color: $black;
 	color: $light-gray;
+	padding:20px 0;
 }
 
 	/*
@@ -886,3 +888,16 @@ FOOTER STYLES
 
 
 	.copyright {}
+
+/*********************
+BOOTSTRAP OVERRIDES
+*********************/
+
+.navbar-header {
+	
+	a { 
+		color: #fff;
+
+		&:hover { color:#ddd; } 
+	}
+}
