@@ -206,9 +206,7 @@ NAVIGATION STYLES
   .nav li {
     float: left;
     position: relative;
-    /*
-    plan your menus and drop-downs wisely.
-    */
+    /* plan your menus and drop-downs wisely. */
     /* showing sub-menus */ }
     .nav li a {
       border-bottom: 0;
@@ -222,8 +220,6 @@ NAVIGATION STYLES
     .nav li ul.sub-menu,
     .nav li ul.children {
       margin-top: 0;
-      border: 1px solid #ccc;
-      border-top: 0;
       position: absolute;
       visibility: hidden;
       z-index: 8999;
@@ -240,8 +236,7 @@ NAVIGATION STYLES
           padding-left: 10px;
           border-right: 0;
           display: block;
-          width: 180px;
-          border-bottom: 1px solid #ccc; }
+          width: 215px; }
         .nav li ul.sub-menu li:last-child a,
         .nav li ul.children li:last-child a {
           border-bottom: 0; }

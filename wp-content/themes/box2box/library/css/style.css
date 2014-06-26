@@ -567,7 +567,7 @@ HEADER STYLES
 *********************/
 .header {
   background-color: #323944;
-  overflow: hidden; }
+  /* overflow:hidden; */ }
 
 #logo {
   margin: 0.75em 0; }
@@ -609,6 +609,8 @@ and more scalable.
       the style.scss file where it's relevant. We want to
       keep this file as small as possible!
       */ }
+      .nav li a:hover, .nav li a:focus {
+        background-color: #4C535E; }
     .nav li ul.sub-menu li a,
     .nav li ul.children li a {
       padding-left: 30px; }
@@ -969,6 +971,11 @@ BOOTSTRAP OVERRIDES
   .navbar-header a:hover {
     color: #ddd; }
 
+.navbar-toggle:hover {
+  background-color: #666; }
+.navbar-toggle span {
+  background-color: #fff; }
+
 /*********************
 LARGER MOBILE DEVICES
 This is for devices like the Galaxy Note or something that's
@@ -1094,9 +1101,7 @@ you can add resource intensive styles.
     .nav li {
       float: left;
       position: relative;
-      /*
-      plan your menus and drop-downs wisely.
-      */
+      /* plan your menus and drop-downs wisely. */
       /* showing sub-menus */ }
       .nav li a {
         border-bottom: 0;
@@ -1110,8 +1115,6 @@ you can add resource intensive styles.
       .nav li ul.sub-menu,
       .nav li ul.children {
         margin-top: 0;
-        border: 1px solid #ccc;
-        border-top: 0;
         position: absolute;
         visibility: hidden;
         z-index: 8999;
@@ -1128,8 +1131,7 @@ you can add resource intensive styles.
             padding-left: 10px;
             border-right: 0;
             display: block;
-            width: 180px;
-            border-bottom: 1px solid #ccc; }
+            width: 215px; }
           .nav li ul.sub-menu li:last-child a,
           .nav li ul.children li:last-child a {
             border-bottom: 0; }
